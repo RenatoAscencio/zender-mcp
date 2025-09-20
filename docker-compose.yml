@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  zender-mcp:
+    build: .
+    container_name: zender-mcp-server
+    environment:
+      - NODE_ENV=production
+      - ZENDER_API_KEY=${ZENDER_API_KEY}
+      - ZENDER_BASE_URL=${ZENDER_BASE_URL:-https://sms.convo.chat}
+    volumes:
+      # Mount a volume for logs if needed
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - mcp-network
+    # For stdio communication, we typically don't expose ports
+    # but you can uncomment this if you implement HTTP transport
+    # ports:
+    #   - "3000:3000"
+
+networks:
+  mcp-network:
+    driver: bridge
+
+volumes:
+  logs:
