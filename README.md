@@ -26,7 +26,16 @@ Un servidor MCP (Model Context Protocol) para ConvoChat/Zender que permite envia
 
 ## 🛠️ Instalación
 
-### Desarrollo Local
+### Opción 1: Docker Hub (Recomendado) 🐳
+
+```bash
+# Descargar y ejecutar directamente desde Docker Hub
+docker run -it --rm \
+  -e ZENDER_API_KEY=tu_api_key \
+  renatoascencio/zender-mcp:latest
+```
+
+### Opción 2: Desarrollo Local
 
 1. **Clonar e instalar dependencias:**
 ```bash
@@ -47,7 +56,7 @@ npm run build
 npm start
 ```
 
-### Docker
+### Opción 3: Docker Local
 
 1. **Construir la imagen:**
 ```bash
@@ -98,7 +107,7 @@ echo '{"mcpServers":{"zender":{"command":"node","args":["./dist/index.js"]}}}' >
 claude-code --mcp-config .claude-config.json
 ```
 
-### Método 3: Docker con Claude
+### Método 3: Docker Hub con Claude (Más fácil)
 
 ```json
 {
@@ -108,7 +117,7 @@ claude-code --mcp-config .claude-config.json
       "args": [
         "run", "-i", "--rm",
         "-e", "ZENDER_API_KEY=tu_api_key_aqui",
-        "zender-mcp"
+        "renatoascencio/zender-mcp:latest"
       ]
     }
   }
