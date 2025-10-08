@@ -3,7 +3,7 @@ import { z } from 'zod';
 // Base configuration
 export const ZenderConfigSchema = z.object({
   apiKey: z.string().min(1, 'API Key is required'),
-  baseUrl: z.string().url().default('https://sms.convo.chat'),
+  baseUrl: z.string().url().default('https://sms.convo.chat/api'),
 });
 
 export type ZenderConfig = z.infer<typeof ZenderConfigSchema>;

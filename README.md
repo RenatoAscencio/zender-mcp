@@ -162,7 +162,7 @@ claude-code --mcp-config .claude-config.json
   "tool": "zender_configure",
   "arguments": {
     "apiKey": "tu_api_key_aqui",
-    "baseUrl": "https://sms.convo.chat"
+    "baseUrl": "https://sms.convo.chat/api"
   }
 }
 ```

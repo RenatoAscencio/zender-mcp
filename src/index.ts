@@ -42,7 +42,7 @@ class ZenderMCPServer {
 
   private autoConfigureFromEnv(): void {
     const apiKey = process.env.ZENDER_API_KEY;
-    const baseUrl = process.env.ZENDER_BASE_URL || 'https://sms.convo.chat';
+    const baseUrl = process.env.ZENDER_BASE_URL || 'https://sms.convo.chat/api';
 
     if (apiKey) {
       this.zenderClient = new ZenderClient({
@@ -80,8 +80,8 @@ class ZenderMCPServer {
               },
               baseUrl: {
                 type: 'string',
-                description: 'Base URL for the API (default: https://sms.convo.chat)',
-                default: 'https://sms.convo.chat',
+                description: 'Base URL for the API (default: https://sms.convo.chat/api)',
+                default: 'https://sms.convo.chat/api',
               },
             },
             required: ['apiKey'],

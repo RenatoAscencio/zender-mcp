@@ -18,15 +18,13 @@ export class ZenderClient {
 
   private async makeRequest(endpoint: string, data: any): Promise<ApiResponse> {
     try {
-      // La API de ConvoChat requiere el 'secret' (API key) como parámetro
-      const payload = {
+      // La API de ConvoChat usa GET con parámetros en query string
+      const params = {
         secret: this.apiKey,
         ...data,
       };
 
-      // Hacer la petición al endpoint con /api/ prefijo
-      const apiEndpoint = endpoint.startsWith('/api/') ? endpoint : `/api${endpoint}`;
-      const response = await this.client.post(apiEndpoint, payload);
+      const response = await this.client.get(endpoint, { params });
 
       return {
         success: true,
