@@ -33,8 +33,24 @@ class ZenderMCPServer {
       }
     );
 
+    // Auto-configure from environment variable if available
+    this.autoConfigureFromEnv();
+
     this.setupToolHandlers();
     this.setupErrorHandling();
+  }
+
+  private autoConfigureFromEnv(): void {
+    const apiKey = process.env.ZENDER_API_KEY;
+    const baseUrl = process.env.ZENDER_BASE_URL || 'https://sms.convo.chat';
+
+    if (apiKey) {
+      this.zenderClient = new ZenderClient({
+        apiKey,
+        baseUrl,
+      });
+      console.error('[Zender MCP] Auto-configured from environment variables');
+    }
   }
 
   private setupErrorHandling(): void {

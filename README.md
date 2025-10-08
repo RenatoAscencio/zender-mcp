@@ -107,15 +107,16 @@ echo '{"mcpServers":{"zender":{"command":"node","args":["./dist/index.js"]}}}' >
 claude-code --mcp-config .claude-config.json
 ```
 
-### Método 3: Docker Hub con Claude (Más fácil)
+### Método 3: Docker Hub con Claude (Más fácil) ⭐ Recomendado
 
+**Con auto-configuración (no requiere ejecutar `zender_configure`):**
 ```json
 {
   "mcpServers": {
     "zender": {
       "command": "docker",
       "args": [
-        "run", "-i", "--rm",
+        "run", "-i", "--rm", "--init",
         "-e", "ZENDER_API_KEY=tu_api_key_aqui",
         "renatoascencio/zender-mcp:latest"
       ]
@@ -123,6 +124,8 @@ claude-code --mcp-config .claude-config.json
   }
 }
 ```
+
+> **Nota:** Cuando configuras `ZENDER_API_KEY` como variable de entorno, el servidor se auto-configura automáticamente y **NO necesitas** ejecutar `zender_configure` en Claude. Puedes usar directamente las herramientas como `zender_get_devices`, `zender_get_whatsapp_accounts`, etc.
 
 ### ⚠️ Importante:
 - Reemplaza `/ruta/completa/a/zender-mcp` con la ruta real de tu proyecto
